@@ -24,8 +24,8 @@ const pool = new Pool({
 
 // Перевірка підключення
 pool.connect()
-  .then(() => console.log('✅ Підключено до PostgreSQL'))
-  .catch(err => console.error('❌ Помилка підключення до PostgreSQL:', err));
+  .then(() => console.log('Підключено до PostgreSQL'))
+  .catch(err => console.error('Помилка підключення до PostgreSQL:', err));
 
 // Додавання нового замовлення
 app.post('/api/orders', async (req, res) => {
