@@ -22,6 +22,19 @@ const db = new Pool({
   }
 });
 
+// ✅ Перевірка підключення до бази
+db.connect()
+  .then(() => console.log('✅ Підключено до PostgreSQL'))
+  .catch(err => {
+    console.error('❌ Не вдалося підключитись до БД:', err);
+    process.exit(1);
+  });
+
+// 🔹 Головна сторінка (перевірка)
+app.get('/', (req, res) => {
+  res.send('Сервер працює 🚀');
+});
+
 // 🔹 Додавання нового замовлення
 app.post('/api/orders', async (req, res) => {
   const { name, email, phone, address, order_items, total_price } = req.body;
@@ -77,5 +90,5 @@ app.delete('/api/orders/:id', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Сервер запущено на http://localhost:${port}`);
+  console.log(`Сервер запущено на порту ${port}`);
 });

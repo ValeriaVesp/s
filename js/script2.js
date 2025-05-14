@@ -80,7 +80,6 @@ document.getElementById('checkoutButton')?.addEventListener('click', () => {
   document.getElementById('orderModal').style.display = 'flex';
 });
 
-
 document.getElementById('closeOrderModal')?.addEventListener('click', () => {
   document.getElementById('thankYouModal').style.display = 'none';
 });
@@ -120,10 +119,7 @@ if (orderForm) {
       total_price: total
     };
 
-    // Автовизначення API для локального запуску чи Railway
-    const apiUrl = window.location.hostname.includes('localhost')
-      ? 'http://localhost:3000/api/orders'
-      : 'https://your-project-name.up.railway.app/api/orders';
+    const apiUrl = 'https://s-kbf2.onrender.com/api/orders';
 
     fetch(apiUrl, {
       method: 'POST',

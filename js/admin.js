@@ -2,7 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const orderContainer = document.getElementById("orderContainer");
   if (!orderContainer) return;
 
-  fetch("/api/orders")
+  const API_URL = "https://s-kbf2.onrender.com/api/orders";
+
+  fetch(API_URL)
     .then(res => res.json())
     .then(orders => {
       if (!orders.length) {
@@ -24,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span>${item.name} – ${item.price} грн</span>
           </div>`).join('');
 
-        const statusClass = order.status === "Підтверджено" ? "confirmed" : 
+        const statusClass = order.status === "Підтверджено" ? "confirmed" :
                             order.status === "Відхилено" ? "rejected" : "pending";
 
         const block = document.createElement("div");
@@ -64,7 +66,7 @@ function updateStatus(button, status) {
   const box = button.closest('.order-box');
   const id = box.dataset.id;
 
-  fetch(`/api/orders/${id}`, {  // Виправлена URL-запис
+  fetch(`https://s-kbf2.onrender.com/api/orders/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ status })
@@ -82,7 +84,7 @@ function deleteOrder(button) {
 
   if (!confirm("Видалити замовлення?")) return;
 
-  fetch(`/api/orders/${id}`, {  // Виправлена URL-запис
+  fetch(`https://s-kbf2.onrender.com/api/orders/${id}`, {
     method: "DELETE"
   })
     .then(res => {
