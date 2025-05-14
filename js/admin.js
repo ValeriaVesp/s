@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <p><strong>Загальна сума:</strong> ${order.total_price} грн</p>
           <p><strong>Ім’я:</strong> ${order.name}</p>
           <p><strong>Телефон:</strong> ${order.phone}</p>
-          <p><strong>Пошта:</strong> ${order.email}</p>
+          <p><strong>Пошта:</strong> <span class="order-email">${order.email}</span></p>
           <div class="buttons">
             <button class="bt confirm">Підтвердити</button>
             <button class="bt reject">Відхилити</button>
@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function updateStatus(button, status) {
   const box = button.closest('.order-box');
   const id = box.dataset.id;
+  const email = box.querySelector(".order-email")?.textContent?.trim();
 
   fetch(`https://s-kbf2.onrender.com/api/orders/${id}`, {
     method: "PUT",
@@ -73,6 +74,13 @@ function updateStatus(button, status) {
   })
     .then(res => {
       if (!res.ok) throw new Error();
+
+      if (status === "Підтверджено") {
+        sendEmail(email, "template_rchxbac");
+      } else if (status === "Відхилено") {
+        sendEmail(email, "template_epwuy4a");
+      }
+
       location.reload();
     })
     .catch(() => alert("Помилка оновлення статусу"));
@@ -92,4 +100,14 @@ function deleteOrder(button) {
       box.remove();
     })
     .catch(() => alert("Помилка видалення"));
+}
+
+function sendEmail(email, templateId) {
+  emailjs.send("service_i6mzuec", templateId, {
+    to_email: email
+  }).then(() => {
+    console.log("Лист надіслано");
+  }).catch(err => {
+    console.error("Помилка надсилання листа:", err);
+  });
 }
