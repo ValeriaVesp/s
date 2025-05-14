@@ -41,7 +41,8 @@
                 <li>
                     <a href="./delivery.html">УМОВИ ДОСТАВКИ</a>
                 </li>
-                <li><a href="javascript:void(0)" onclick="document.getElementById('cart-modal')"> <img src="./image/cosh.png" alt="Кошик"></a></li>
+                <a href="javascript:void(0)" onclick="document.getElementById('cart-modal').style.display='flex'"> <img src="./image/cosh.png" alt="Кошик"></a>
+              </li>
             </ul>
         
         </header>
@@ -159,6 +160,7 @@
   <!-- Кошик -->
 <div id="cart-modal" class="modal_bgd" >
   <div class="modal_form_container">
+
     <a class="close_btn" id="closeCartModal">X</a>
     <h4>Ваш кошик</h4>
     <ul id="cartItemsList" class="cart-items"></ul>

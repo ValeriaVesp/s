@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2');
+const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -10,78 +10,70 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-const connection = mysql.createConnection({
+// 🔌 Підключення до PostgreSQL
+const db = new Pool({
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
-});
-
-connection.connect(err => {
-  if (err) {
-    console.error('Помилка підключення до MySQL:', err);
-  } else {
-    console.log('Підключено до бази даних MySQL');
+  database: process.env.DB_NAME,
+  ssl: {
+    rejectUnauthorized: false // обов'язково для Render
   }
 });
 
-// Додавання нового замовлення
-app.post('/api/orders', (req, res) => {
+// 🔹 Додавання нового замовлення
+app.post('/api/orders', async (req, res) => {
   const { name, email, phone, address, order_items, total_price } = req.body;
 
-  const sql = 'INSERT INTO orders (name, email, phone, address, order_items, total_price) VALUES (?, ?, ?, ?, ?, ?)';
-  const values = [name, email, phone, address, JSON.stringify(order_items), total_price];
-
-  connection.query(sql, values, (err) => {
-    if (err) {
-      console.error('Помилка при збереженні замовлення:', err);
-      res.status(500).json({ message: 'Помилка сервера' });
-    } else {
-      res.status(200).json({ message: 'Замовлення успішно збережено' });
-    }
-  });
+  try {
+    await db.query(
+      'INSERT INTO orders (name, email, phone, address, order_items, total_price) VALUES ($1, $2, $3, $4, $5, $6)',
+      [name, email, phone, address, JSON.stringify(order_items), total_price]
+    );
+    res.status(200).json({ message: 'Замовлення успішно збережено' });
+  } catch (err) {
+    console.error('Помилка при збереженні замовлення:', err);
+    res.status(500).json({ message: 'Помилка сервера' });
+  }
 });
 
-// Отримання замовлень
-app.get('/api/orders', (req, res) => {
-  connection.query('SELECT * FROM orders ORDER BY created_at DESC', (err, results) => {
-    if (err) {
-      console.error('Помилка при отриманні замовлень:', err);
-      res.status(500).json({ message: 'Помилка сервера' });
-    } else {
-      res.status(200).json(results);
-    }
-  });
+// 🔹 Отримання всіх замовлень
+app.get('/api/orders', async (req, res) => {
+  try {
+    const result = await db.query('SELECT * FROM orders ORDER BY created_at DESC');
+    res.status(200).json(result.rows);
+  } catch (err) {
+    console.error('Помилка при отриманні замовлень:', err);
+    res.status(500).json({ message: 'Помилка сервера' });
+  }
 });
 
-// Оновлення статусу замовлення
-app.put('/api/orders/:id', (req, res) => {
+// 🔹 Оновлення статусу
+app.put('/api/orders/:id', async (req, res) => {
   const { status } = req.body;
   const { id } = req.params;
 
-  connection.query('UPDATE orders SET status = ? WHERE id = ?', [status, id], (err) => {
-    if (err) {
-      console.error('Помилка при оновленні статусу:', err);
-      res.status(500).json({ message: 'Помилка сервера' });
-    } else {
-      res.status(200).json({ message: 'Статус оновлено' });
-    }
-  });
+  try {
+    await db.query('UPDATE orders SET status = $1 WHERE id = $2', [status, id]);
+    res.status(200).json({ message: 'Статус оновлено' });
+  } catch (err) {
+    console.error('Помилка при оновленні статусу:', err);
+    res.status(500).json({ message: 'Помилка сервера' });
+  }
 });
 
-// Видалення замовлення
-app.delete('/api/orders/:id', (req, res) => {
+// 🔹 Видалення замовлення
+app.delete('/api/orders/:id', async (req, res) => {
   const { id } = req.params;
 
-  connection.query('DELETE FROM orders WHERE id = ?', [id], (err) => {
-    if (err) {
-      console.error('Помилка при видаленні замовлення:', err);
-      res.status(500).json({ message: 'Помилка сервера' });
-    } else {
-      res.status(200).json({ message: 'Замовлення видалено' });
-    }
-  });
+  try {
+    await db.query('DELETE FROM orders WHERE id = $1', [id]);
+    res.status(200).json({ message: 'Замовлення видалено' });
+  } catch (err) {
+    console.error('Помилка при видаленні замовлення:', err);
+    res.status(500).json({ message: 'Помилка сервера' });
+  }
 });
 
 app.listen(port, () => {

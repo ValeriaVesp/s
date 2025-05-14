@@ -80,8 +80,9 @@ document.getElementById('checkoutButton')?.addEventListener('click', () => {
   document.getElementById('orderModal').style.display = 'flex';
 });
 
+
 document.getElementById('closeOrderModal')?.addEventListener('click', () => {
-  document.getElementById('orderModal').style.display = 'none';
+  document.getElementById('thankYouModal').style.display = 'none';
 });
 
 document.getElementById('closeThankYou')?.addEventListener('click', () => {
