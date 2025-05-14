@@ -1,0 +1,208 @@
+@media (max-width: 768px) {
+  html, body {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  .wrapper {
+    width: 100% !important;
+    padding: 0 1rem;
+  }
+
+  header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 1rem;
+    position: relative;
+  }
+
+  .logo-img {
+    height: 40px;
+    width: auto;
+  }
+
+  .menu-toggle {
+    display: block !important;
+    background: none;
+    border: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    z-index: 1001;
+    margin-right: 2rem;
+  }
+
+  .header__menu {
+    display: none !important;
+    flex-direction: column !important;
+    position: absolute !important;
+    top: 100%;
+    right: 1rem;
+    background-color: #06084d;
+    border-radius: 10px;
+    z-index: 1000;
+    width: max-content;
+    text-align: right;
+  }
+
+  .header__menu.open {
+    display: flex !important;
+  }
+
+  .header__menu li {
+    width: 100%;
+  }
+
+  .header__menu a {
+    padding: 0.75rem 1.5rem;
+    display: block;
+    color: white;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+
+  .photogolowna_img {
+display: none !important;
+  }
+
+  .img_start{
+display: none;
+
+  }
+
+  .hero img {
+    max-width: 90% !important;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 1rem auto;
+  }
+
+  .rest_conteiner {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center;
+    margin: 2rem 1rem !important;
+    gap: 2rem;
+  }
+
+  .pht {
+    width: 100% !important;
+    max-width: 300px;
+    padding: 1rem;
+  }
+
+  .pht img {
+    width: 140px;
+    height: 140px;
+  }
+
+  .info-box {
+    flex-direction: row !important;  /* Горизонтально */
+    justify-content: space-around !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    flex-wrap: wrap; /* якщо не вміщується — переносить */
+  }
+  
+  .info-item {
+    max-width: 80px !important;
+    font-size: 12px !important;
+  }
+  
+  .info-item img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+  }
+  .footer-content {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 2rem;
+  }
+
+  .footer-columns {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.5rem;
+  }
+
+  .footer-logo {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .footer a,
+  .footer p {
+    font-size: 14px !important;
+    margin: 0.5rem 0 !important;
+    text-align: center !important;
+    display: block !important;
+  }
+
+  .modal_form_container,
+  .modal-content {
+    padding: 1rem !important;
+    width: 95% !important;
+    max-width: 95% !important;
+  }
+
+  .order-box {
+    width: 95% !important;
+    padding: 1.5rem !important;
+    margin-top: 20% !important;
+  }
+
+  .buttons {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem;
+  }
+
+  .buttons button {
+    width: 100% !important;
+    font-size: 16px;
+  }
+
+  .toast {
+    right: 10px !important;
+    bottom: 10px !important;
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+
+  .inline-toast {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+
+  .cart-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .cart-item-info {
+    align-items: flex-start !important;
+  }
+
+  .modal_filed_input {
+    font-size: 14px !important;
+  }
+
+  .photogolowna_img {
+    width: 100% !important;
+    height: auto !important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.2;
+    z-index: -1;
+  }
+}

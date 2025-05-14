@@ -1,0 +1,14 @@
+CREATE DATABASE IF NOT EXISTS rest;
+USE rest;
+
+CREATE TABLE orders (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100),
+  email VARCHAR(100),
+  phone VARCHAR(20),
+  address VARCHAR(255),
+  items TEXT,
+  total DECIMAL(10, 2),
+  status VARCHAR(50) DEFAULT 'Очікує',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

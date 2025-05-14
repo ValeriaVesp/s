@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Піца з REST</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel ="stylesheet" href="./css/style.css">
+
+
+
+ </head>
+<body>
+    
+    <section class = "main_page">
+        <!-- головна картинка--> 
+       <div class="im">
+
+        <img src="./image/logo.png" alt="photogolowna" class="photogolowna_img">  
+
+        </div>
+    <!-- обгортка -->
+    <div class="wrapper"> 
+        
+        <!-- логотип -->
+        <header>
+            <img src ="./image/logo.png" alt = "Логотип" class="logo-img" /> 
+
+            <button class="menu-toggle" id="mobileMenuBtn">:::</button>
+            <ul class="header__menu" id="mobileMenu">
+                <li>
+                    <a href="./index.html" >ГОЛОВНА</a>
+                </li>
+               <li>
+                    <a href="./pasta.html">ПАСТА</a>
+                </li>
+                <li>
+                    <a href="./dessert.html">ДЕСЕРТИ</a>
+                </li>
+                
+                <li>
+                    <a href="./delivery.html">УМОВИ ДОСТАВКИ</a>
+                </li>
+                            <a href="javascript:void(0)" onclick="document.getElementById('cart-modal').style.display='flex'"> <img src="./image/cosh.png" alt="Кошик"></a>
+            </ul>
+
+        </header>
+ 
+    <div class="main_page_row">
+    <!-- написи на стартовому екрані -->
+        <div class="main_page_cont">
+
+        <h2 class="werh">Соковита піца для всіх</h2> 
+        <h1 class="napush1_title">Піца</h1>
+        <p class="nizh">Обирай свою улюблену піцу та швидше  <br> замовляй додому, на роботу, по всьомумісту!</p>
+        <a href="#menu" class="knopkakwetion">Обрати</a>       
+        </div>
+        <img src="./image/pizza2.png" alt="Піца з морепродуктами" class="img_start" >
+    </div>
+
+              <!-- вибір піци-->
+    </section>
+
+             <!-- всі картинки -->
+             <div class="rest_conteiner" id="menu"> 
+
+             <!-- <div class="lit_ob_conteiner1"  class="lit_conteiner"  >  -->
+                
+                <div class="pht" >
+                    <img src="./image/pizza1.png" alt="піца з грибами" class="img" width="250px" height="190px">
+                    <h4>Піца з грибами</h4>
+                    <p> В складі: гриби, томатний соус, свинина, цибуля, пармезан, шпинат, чедер.</p>
+                    <p>Вартість: <span class="product-price">195 грн</span></p>
+                    <a onclick="addToCart('Піца з грибами', 195, './image/pizza1.png', this)" class="bt">Замовити</a>
+                </div>
+
+                <div class="pht" >
+                    <img src="./image/pizza2.png" alt="Піца з морепродуктами" class="img" width="250" height="200">
+                    <h4>Піца з морепродуктами </h4>
+                    <p>В складі: креветки, рукола, томатний соус, восьминіг,  шпинат, пармезан. </p>
+                    <p>Вартість: <span class="product-price">210 грн</span></p>
+                    <a onclick="addToCart('Піца з морепродуктами', 210, './image/pizza2.png', this)" class="bt">Замовити</a>
+                </div>
+
+                <div class="pht" >
+                    <img src="./image/pizza3.png" alt="Піца з Цезар" class="img" width="250px" height="190px">
+                    <h4>Піца з Цезар</h4>
+                    <p> В складі: томатний соус, курятина, пармезан, помідори, шпинат, руrкола.</p>
+                    <p>Вартість: <span class="product-price">190 грн</span></p>
+                    <a onclick="addToCart('Піца Цезар', 190, './image/pizza3.png', this)" class="bt">Замовити</a>
+                </div> 
+                                <p> Додавай до кошика та отримуй відповідь через 5 хвилин!</p>
+             </div>
+
+
+    </section>
+<!-- нижній напис завершення сторінки -->
+<footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="./image/logo.png" alt="REST Logo" class="logo-img" />
+        <p>Доставка швидше вітру!</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <a href="./index.html">Головна</a>
+          <a href="./pasta.html">Паста</a>
+          <a href="./dessert.html">Десерти</a>
+        </div>
+        <div class="footer-column">
+          <a href="./delivery.html">Умови доставки</a>
+          <p>Харків</p>
+             <p>+380234534545</p>
+        </div>  
+      </div>
+    </div>
+  </footer>
+
+  <!-- Кошик -->
+<div id="cart-modal" class="modal_bgd" >
+    <div class="modal_form_container">
+      <a class="close_btn" id="closeCartModal">X</a>
+      <h4>Ваш кошик</h4>
+      <ul id="cartItemsList" class="cart-items"></ul>
+      <strong>Загальна сума: <span id="cartTotal">0</span> грн</strong>
+      <br><br>
+      <button id="checkoutButton" class="bt">Оформити замовлення</button>
+      <button id="clearCartButton" class="bt">Очистити кошик</button>
+    </div>
+  </div>
+  
+  <!-- Модальне вікно оформлення замовлення -->
+  <div id="orderModal" class="modal" >
+    <div class="modal-content">
+      <a id="closeOrderModal" class="close_btn">X</a>
+      <h2>Вкажіть, будь ласка, дані:</h2>
+      <form id="orderForm">
+        <input type="text" id="name" placeholder="Ім'я" required>
+        <input type="email" id="email" placeholder="Пошта" required>
+        <input type="tel" id="phone" placeholder="Телефон" required>
+        <input type="text" id="address" placeholder="Адреса" required>
+        <button class="bt" type="submit" id="confirmOrder">Підтвердити</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Модальне вікно подяки -->
+  <div id="thankYouModal" class="modal">
+    <div class="modal-content">
+      <a id="closeThankYou" class="close_btn">X</a>
+      <h2>Дякуємо за замовлення!</h2>
+      <p>Ви отримаєте листа на вказану пошту після підтвердження адміністратором.</p>
+    </div>
+  </div>
+  <script src="./js/script.js"></script>
+  <script src="./js/script2.js"></script>
+  <script src="./js/admin.js"></script>
+</body>
+</html>

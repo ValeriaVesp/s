@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Адміністративна панель</title>
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("LVhiA-G7YXByCK5H1");
+</script>
+
+
+</head>
+<body>
+
+  <section class="main_page">
+    <div class="im">
+      <img src="./image/logo.png" alt="photogolowna" class="photogolowna_img">  
+    </div>
+
+    <div class="wrapper">
+      <header>
+        <img src="./image/logo.png" alt="Логотип" class="logo-img" />
+        <ul class="header__menu">
+          <li><a href="./index.html">ГОЛОВНА</a></li>
+        </ul>
+      </header>
+
+      <h1 class="admin-title">Адміністративна панель</h1>
+      <div class="admin-body" id="orderContainer"></div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="./image/logo.png" alt="REST Logo" class="logo-img" />
+        <p>Доставка швидше вітру!</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <a href="./pizza.html">Піца</a>
+          <a href="./pasta.html">Паста</a>
+          <a href="./dessert.html">Десерти</a>
+        </div>
+        <div class="footer-column">
+          <a href="./index.html">Головна</a>
+          <a href="./delivery.html">Умови доставки</a>
+          <p>Харків</p>
+          <p>+380234534545</p>
+        </div>  
+      </div>
+    </div>
+  </footer>
+
+  <script src="./js/admin.js"></script>
+</body>
+</html>

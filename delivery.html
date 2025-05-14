@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Умови доставки в REST</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel ="stylesheet" href="./css/style.css">
+
+ </head>
+<body>
+    
+    <section class = "main_page">
+        <!-- головна картинка--> 
+       <div class="im">
+
+        <img src="./image/logo.png" alt="photogolowna" class="photogolowna_img">  
+
+        </div>
+    <!-- обгортка -->
+    <div class="wrapper"> 
+        
+        <!-- логотип -->
+        <header>
+            <img src ="./image/logo.png" alt = "Логотип" class="logo-img" /> 
+
+            <button class="menu-toggle" id="mobileMenuBtn">:::</button>
+            <ul class="header__menu" id="mobileMenu">
+                <li>
+                    <a href="./index.html" >ГОЛОВНА</a>
+                </li>
+                <li>
+                    <a href="./pizza.html" >ПІЦА</a>
+                </li>
+               <li>
+                    <a href="./pasta.html">ПАСТА</a>
+                </li>
+                <li>
+                    <a href="./dessert.html">ДЕСЕРТИ</a>
+                </li>
+                <li><a href="javascript:void(0)" onclick="document.getElementById('cart-modal').style.display='flex'"> <img src="./image/cosh.png" alt="Кошик"></a></li>
+            </ul>
+            
+        </header>
+ 
+    <div  class="main_page_deliv">
+    <!-- написи на стартовому екрані -->
+    <div>
+        <h1 class="napush1_title">Умови доставки</h1>
+        <h2 class="werh">Все дуже просто та легко!</h2> 
+        <p class="nizh">Коротка інструкція:
+            <br>
+            1) Обрати бажаний продукт.
+            <br>
+            2) В кошику натиснути “Замовити”.
+            <br>
+            3) Ввести неохідні дані: телефон, ім’я, пошту адресу.
+            <br>
+            4) Очікувати на підтвердження замовлення адміністратором.
+            <br>
+            5) Чекати на своє замовлення після відповіді адміністратора </p>
+        <a href="./index.html" class="knopkakwetion">Повернутись до вибору страв</a>       
+    </div>
+    </div>
+    <div class="info-box" >
+        <div class="info-item">
+          <img src="./image/clock.png" alt="Доставка 20 хв" width="65px" height="65px"/>
+          <p>Доставка<br>за 20 хв</p>
+        </div>
+        <div class="info-item">
+          <img src="./image/human.png" alt="Турбота про клієнтів" width="65px" height="65px"/>
+          <p>З турботою<br>про клієнтів</p>
+        </div>
+        <div class="info-item">
+          <img src="./image/phone.png" alt="Швидко відповідаємо" width="65px" height="65px"/>
+          <p>Швидко<br>відповідаємо</p>
+        </div>
+      </div>
+      
+    </div>
+<!-- нижній напис завершення сторінки -->
+<footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="./image/logo.png" alt="REST Logo" class="logo-img" />
+        <p>Доставка швидше вітру!</p>
+      </div>
+      <div class="footer-columns">
+        <div class="footer-column">
+          <a href="./pizza.html">Піца</a>
+          <a href="./pasta.html">Паста</a>
+          <a href="./dessert.html">Десерти</a>
+        </div>
+        <div class="footer-column">
+            <a href="./index.html">Головна</a>
+          <p>Харків</p>
+             <p>+380234534545</p>
+        </div>  
+      </div>
+    </div>
+  </footer>
+
+<!-- Кошик -->
+<div id="cart-modal" class="modal_bgd" >
+  <div class="modal_form_container">
+    <a class="close_btn" id="closeCartModal">X</a>
+    <h4>Ваш кошик</h4>
+    <ul id="cartItemsList" class="cart-items"></ul>
+    <strong>Загальна сума: <span id="cartTotal">0</span> грн</strong>
+    <br><br>
+    <button id="checkoutButton" class="bt">Оформити замовлення</button>
+    <button id="clearCartButton" class="bt">Очистити кошик</button>
+  </div>
+</div>
+
+<!-- Модальне вікно оформлення замовлення -->
+<div id="orderModal" class="modal" >
+  <div class="modal-content">
+    <a id="closeOrderModal" class="close_btn">X</a>
+    <h2>Вкажіть, будь ласка, дані:</h2>
+    <form id="orderForm">
+      <input type="text" id="name" placeholder="Ім'я" required>
+      <input type="email" id="email" placeholder="Пошта" required>
+      <input type="tel" id="phone" placeholder="Телефон" required>
+      <input type="text" id="address" placeholder="Адреса" required>
+      <button class="bt" type="submit" id="confirmOrder">Підтвердити</button>
+    </form>
+  </div>
+</div>
+
+<!-- Модальне вікно подяки -->
+<div id="thankYouModal" class="modal">
+  <div class="modal-content">
+    <a id="closeThankYou" class="close_btn">X</a>
+    <h2>Дякуємо за замовлення!</h2>
+    <p>Ви отримаєте листа на вказану пошту після підтвердження адміністратором.</p>
+  </div>
+</div>
+<script src="./js/script.js"></script>
+<script src="./js/script2.js"></script>
+<script src="./js/admin.js"></script>
+</body>
+</html>
